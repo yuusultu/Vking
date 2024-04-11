@@ -1,0 +1,77 @@
+<div style="display: flex;">
+
+<div id="Aria01"><input type="text" id="name01" value="おかつゆうす"></input><meter id="battle01" min="0" max="5" low="2" high="3" value="5" optimum="5"></meter><br><input type="text" id="nameText01" maxlength="1" value="5"  onkeyup="inputCheck01()">/ 5</div>
+<div id="Aria02"><input type="text" id="name02" value="対戦相手"></input> <meter id="battle02" min="0" max="5" low="2" high="3" value="5" optimum="5"></meter><br><input type="text" id="nameText02" maxlength="1" value="5"  onkeyup="inputCheck02()">/ 5</div>
+
+</div>
+
+
+<style type="text/css">
+#Aria01 {
+     width: 200px;
+     background-color: hotpink;
+     text-align: center;
+}
+#Aria02 {
+     width: 200px;
+     background-color: aquamarine;
+     text-align: center;
+}
+#battle01 {
+     width: 150px;
+}
+#battle02 {
+     width: 150px;
+}
+#nameText01{
+     font-size:16px;
+     width: 1em;
+     background-color: hotpink;
+     border:none;
+}
+#nameText02{
+     font-size:16px;
+     width: 1em;
+     background-color: aquamarine;
+     border:none;
+}
+#name01{
+     font-size:16px;
+
+     text-align: center;
+     border:none;
+     background-color: hotpink;
+}
+#name02{
+     font-size:16px;
+
+     text-align: center;
+     border:none;
+     background-color: aquamarine;
+}
+
+</style>
+<script>
+
+function inputCheck01() {
+var nameText = document.getElementById("nameText01");
+var element = document.getElementById( "battle01" ) ;
+console.log(nameText.value);
+// プロパティの取得
+element.value ;	// 
+
+// プロパティに代入
+element.value = nameText.value ;
+}
+function inputCheck02() {
+var nameText = document.getElementById("nameText02");
+var element = document.getElementById( "battle02" ) ;
+console.log(nameText.value);
+// プロパティの取得
+element.value ;	// 
+
+// プロパティに代入
+element.value = nameText.value ;
+}
+
+</script>
