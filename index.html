@@ -1,6 +1,8 @@
 <div style="display: flex;">
-<div id="Aria01"><input type="text" id="name01" value="おかつゆうす"></input><meter id="battle01" min="0" max="5" low="2" high="3" value="5" optimum="5"></meter><br><input type="text" id="nameText01" maxlength="1" value="5"  onkeyup="inputCheck01()">/ 5</div>
-<div id="Aria02"><input type="text" id="name02" value="対戦相手"></input> <meter id="battle02" min="0" max="5" low="2" high="3" value="5" optimum="5"></meter><br><input type="text" id="nameText02" maxlength="1" value="5"  onkeyup="inputCheck02()">/ 5</div>
+
+<div id="Aria01"><input type="text" id="name01" value="おかつゆうす"></input><meter id="battle01" min="0" max="5" low="2" high="3" value="5" optimum="5"></meter><br> <div id="buttons01"><button class="button" id="down01">-</button><input type="text" id="nameText01" maxlength="1" value="5"  onkeyup="inputCheck01()"><button class="button" id="up01">+</button> </div></div>
+<div id="Aria02"><input type="text" id="name02" value="対戦相手"></input> <meter id="battle02" min="0" max="5" low="2" high="3" value="5" optimum="5"></meter><br> <div id="buttons02"><button class="button" id="down02">-</button><input type="text" id="nameText02" maxlength="1" value="5"  onkeyup="inputCheck02()"><button class="button" id="up02">+</button> </div></div>
+
 </div>
 
 
@@ -26,26 +28,51 @@
      width: 1em;
      background-color: hotpink;
      border:none;
+     padding: 0 3px;
+
 }
 #nameText02{
      font-size:16px;
      width: 1em;
      background-color: aquamarine;
      border:none;
+     padding: 0 3px;
+
 }
 #name01{
      font-size:16px;
-
      text-align: center;
      border:none;
      background-color: hotpink;
 }
 #name02{
      font-size:16px;
-
      text-align: center;
      border:none;
      background-color: aquamarine;
+}
+#buttons01{
+    display: flex;
+    justify-content: center;
+}
+#buttons02{
+    display: flex;
+    justify-content: center;
+}
+
+button{
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color:white;
+  z-index: 4;
+  position: relative;
+  transition: 0.2s
+}
+button:hover{
+  background-color:gray;
 }
 
 </style>
@@ -71,5 +98,61 @@ element.value ;	//
 // プロパティに代入
 element.value = nameText.value ;
 }
+
+(() => {
+  //HTMLのid値を使って以下のDOM要素を取得
+  var downbutton = document.getElementById('down01');
+  var upbutton = document.getElementById('up01');
+  var nameText = document.getElementById("nameText01");
+  var element = document.getElementById( "battle01" ) ;
+
+
+  //ボタンが押されたらカウント減
+  downbutton.addEventListener('click', (event) => {
+  //0以下にはならないようにする
+  if(nameText.value >= 1) {
+    nameText.value--;
+    element.value = nameText.value ;
+
+  }
+  });
+
+  //ボタンが押されたらカウント増
+  upbutton.addEventListener('click', (event) => {
+    nameText.value++;
+    element.value = nameText.value ;
+
+  })
+
+
+})();
+(() => {
+  //HTMLのid値を使って以下のDOM要素を取得
+  var downbutton = document.getElementById('down02');
+  var upbutton = document.getElementById('up02');
+  var nameText = document.getElementById("nameText02");
+  var element = document.getElementById( "battle02" ) ;
+
+
+  //ボタンが押されたらカウント減
+  downbutton.addEventListener('click', (event) => {
+  //0以下にはならないようにする
+  if(nameText.value >= 1) {
+    nameText.value--;
+    element.value = nameText.value ;
+
+  }
+  });
+
+  //ボタンが押されたらカウント増
+  upbutton.addEventListener('click', (event) => {
+    nameText.value++;
+    element.value = nameText.value ;
+
+  })
+
+
+})();
+
 
 </script>
