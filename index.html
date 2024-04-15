@@ -1,8 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 <div style="display: flex;">
 
-<div id="Aria01"><input type="text" id="name01" value="おかつゆうす"></input><meter id="battle01" min="0" max="5" low="2" high="3" value="5" optimum="5"></meter><br> <div id="buttons01"><button class="button" id="down01">-</button><input type="text" id="nameText01" maxlength="1" value="5"  onkeyup="inputCheck01()"><button class="button" id="up01">+</button> </div></div>
-<div id="Aria02"><input type="text" id="name02" value="対戦相手"></input> <meter id="battle02" min="0" max="5" low="2" high="3" value="5" optimum="5"></meter><br> <div id="buttons02"><button class="button" id="down02">-</button><input type="text" id="nameText02" maxlength="1" value="5"  onkeyup="inputCheck02()"><button class="button" id="up02">+</button> </div></div>
+<div id="Aria01"><input type="text" id="name01" value="おかつゆうす"></input><meter id="battle01" min="0" max="5" low="2" high="3" value="5" optimum="5"></meter><br> <input type="text" id="nameText01" maxlength="1" value="5"  onkeyup="inputCheck01()"></div><div id="flag01"></div>
+<div id="Aria02"><input type="text" id="name02" value="対戦相手"></input> <meter id="battle02" min="0" max="5" low="2" high="3" value="5" optimum="5"></meter><br> <input type="text" id="nameText02" maxlength="1" value="5"  onkeyup="inputCheck02()"> </div><div id="flag02"></div>
+</div>
+<div id="result"></div>
 
+<div class="relative">
+  <img src="グー.png" alt="" id="absolute01" width="100" />
+  <img src="チョキ.png" alt="" id="absolute02" width="100" />
+  <img src="パー.png" alt="" id="absolute03" width="100" />
+</div>
+
+<div class="relative2">
+  <img src="グー.png" alt="" id="absolute04" width="100" />
+  <img src="チョキ.png" alt="" id="absolute05" width="100" />
+  <img src="パー.png" alt="" id="absolute06" width="100" />
+</div>
+<div id="sukima">
+</div>
+<div class="flex">
+<div id = "left">
+<input type="button" id="special01" value="得意"   />
+<input type="button" id="special02" value="得意" style="margin-left: 9px;" />
+<input type="button" id="special03" value="得意" style="margin-left: 7px;"  />
+</div>
+<div id = "right">
+<input type="button" id="special04" value="得意"   />
+<input type="button" id="special05" value="得意"  style="margin-left: 9px;" />
+<input type="button" id="special06" value="得意"  style="margin-left: 7px;" />
+</div>
+</div>
+<div class="flex">
+<div class="sample-form">
+  <input id="image_a" type="radio" value="image_a.jpg" name="image" onchange="check_form()">
+  <label for="image_a"><img src="グー.png" width="50"></label>
+  <input id="image_b" type="radio" value="image_b.jpg" name="image" onchange="check_form()">
+  <label for="image_b"><img src="チョキ.png" width="50"></label>
+  <input id="image_c" type="radio" value="image_c.png" name="image" onchange="check_form()">
+  <label for="image_c"><img src="パー.png" width="50"></label>
+</div>
+<div class="sample-form2">
+  <input id="image_d" type="radio" value="image_a.jpg" name="image2" onchange="check_form()">
+  <label for="image_d"><img src="グー.png" width="50"></label>
+  <input id="image_e" type="radio" value="image_b.jpg" name="image2" onchange="check_form()">
+  <label for="image_e"><img src="チョキ.png" width="50"></label>
+  <input id="image_f" type="radio" value="image_c.png" name="image2" onchange="check_form()">
+  <label for="image_f"><img src="パー.png" width="50"></label>
+</div>
+</div>
+<div class="janken">
+<input type="button" id="janken_botton" value="じゃんけん" onclick="setBattle()"  disabled />
+<input type="button" id="janken_reset" value="リセット" onclick="resetBattle()"  />
 </div>
 
 
@@ -11,11 +66,15 @@
      width: 200px;
      background-color: hotpink;
      text-align: center;
+     z-index:2;
+
 }
 #Aria02 {
      width: 200px;
      background-color: aquamarine;
      text-align: center;
+     z-index:2;
+
 }
 #battle01 {
      width: 150px;
@@ -50,6 +109,8 @@
      text-align: center;
      border:none;
      background-color: aquamarine;
+     z-index:2;
+
 }
 #buttons01{
     display: flex;
@@ -75,9 +136,105 @@ button:hover{
   background-color:gray;
 }
 
+.relative{
+   position: relative;
+}
+.relative2{
+   position: relative;
+}
+#absolute01 {
+    position: absolute;
+    margin-left: 50px;
+}
+#absolute02 {
+    position: absolute;
+    margin: 50px 0 0 20px;
+}
+#absolute03 {
+    position: absolute;
+    margin: 50px 0 0 80px;
+}
+#absolute04 {
+    position: absolute;
+    margin-left: 250px;
+}
+#absolute05 {
+    position: absolute;
+    margin: 50px 0 0 220px;
+}
+#absolute06 {
+    position: absolute;
+    margin: 50px 0 0 280px;
+}
+#sukima{
+height:180px;
+}
+.flex{
+display:flex;
+}
+
+/* ラジオボタンの○を消す */
+.sample-form input[type="radio"] {
+    display: none;
+}
+/* 画像の周りに隙間をあける */
+.sample-form label img {
+}
+/* 未選択の場合、色を薄くする */
+.sample-form input[type="radio"] + label img {
+    opacity:0.2;
+  }
+/* 選択済みの場合、色を濃くする */
+.sample-form input[type="radio"]:checked + label img {
+    opacity:1;
+}
+.sample-form2 input[type="radio"] {
+    display: none;
+}
+/* 画像の周りに隙間をあける */
+.sample-form2 label img {
+}
+/* 未選択の場合、色を薄くする */
+.sample-form2 input[type="radio"] + label img {
+    opacity:0.2;
+  }
+/* 選択済みの場合、色を濃くする */
+.sample-form2 input[type="radio"]:checked + label img {
+    opacity:1;
+}
+.sample-form {
+    margin-left: 20px;
+    width:180px;
+}
+.sample-form2 {
+    margin-left: 20px;
+    width:180px;
+}
+.janken{
+      margin-left:110px;
+}
+#result{
+    position: absolute;
+    text-align: center;
+    width: 400px;
+}
+#left{
+margin-left: 23px;
+}
+#right{
+margin-left: 45px;
+}
+#flag01{
+    display:none;
+}
+#flag02{
+    display:none;
+
+}
+
 </style>
 <script>
-
+'use strict';
 function inputCheck01() {
 var nameText = document.getElementById("nameText01");
 var element = document.getElementById( "battle01" ) ;
@@ -100,59 +257,211 @@ element.value = nameText.value ;
 }
 
 (() => {
-  //HTMLのid値を使って以下のDOM要素を取得
-  var downbutton = document.getElementById('down01');
-  var upbutton = document.getElementById('up01');
-  var nameText = document.getElementById("nameText01");
-  var element = document.getElementById( "battle01" ) ;
 
 
-  //ボタンが押されたらカウント減
-  downbutton.addEventListener('click', (event) => {
-  //0以下にはならないようにする
-  if(nameText.value >= 1) {
-    nameText.value--;
-    element.value = nameText.value ;
+//スペシャル（得意）設置
+    let special01 = document.getElementById("special01");
+    let special02 = document.getElementById("special02");
+    let special03 = document.getElementById("special03");
+    let special04 = document.getElementById("special04");
+    let special05 = document.getElementById("special05");
+    let special06 = document.getElementById("special06");
+    let absolute01 = document.getElementById("absolute01");
+    let absolute02 = document.getElementById("absolute02");
+    let absolute03 = document.getElementById("absolute03");
+    let absolute04 = document.getElementById("absolute04");
+    let absolute05 = document.getElementById("absolute05");
+    let absolute06 = document.getElementById("absolute06");
+    let flag01 = document.getElementById("flag01");
+    let flag02 = document.getElementById("flag02");
 
-  }
-  });
 
-  //ボタンが押されたらカウント増
-  upbutton.addEventListener('click', (event) => {
-    nameText.value++;
-    element.value = nameText.value ;
+    special01.addEventListener("click",function(){
+             absolute01.style = " width:150px; margin: -25px 0 0 25px; z-index: 1; ";
+             absolute02.style = " width:100px; margin: 50px 0 0 20px; z-index: 0;"
+             absolute03.style = " width:100px; margin: 50px 0 0 80px; z-index: 0;"
+             flag01.innerText = "0";
+    })
 
-  })
+    special02.addEventListener("click",function(){
+             absolute01.style = " width:100px; margin: 0 0 0 50px; z-index: 0; ";
+             absolute02.style = " width:150px; margin: 25px 0px 0px -5px; z-index: 1;"
+             absolute03.style = " width:100px; margin: 50px 0 0 80px; z-index: 0;"
+             flag01.innerText = "1";
+    })
+    special03.addEventListener("click",function(){
+             absolute01.style = " width:100px; margin: 0 0 0 50px; z-index: 0; ";
+             absolute02.style = " width:100px; margin: 50px 0px 0px 20px; z-index: 0;"
+             absolute03.style = " width:150px; margin: 25px 0px 0px 55px; z-index: 1;"
+             flag01.innerText = "2";
+    })
+    special04.addEventListener("click",function(){
+             absolute04.style = " width:150px; margin: -25px 0 0 225px; z-index: 1; ";
+             absolute05.style = " width:100px; margin: 50px 0 0 220px; z-index: 0;"
+             absolute06.style = " width:100px; margin: 50px 0 0 280px; z-index: 0;"
+             flag02.innerText = "0";
+    })
 
+    special05.addEventListener("click",function(){
+             absolute04.style = " width:100px; margin: 0 0 0 250px; z-index: 0; ";
+             absolute05.style = " width:150px; margin: 25px 0px 0px 195px; z-index: 1;"
+             absolute06.style = " width:100px; margin: 50px 0 0 280px; z-index: 0;"
+             flag02.innerText = "1";
+    })
+    special06.addEventListener("click",function(){
+             absolute04.style = " width:100px; margin: 0 0 0 250px; z-index: 0; ";
+             absolute05.style = " width:100px; margin: 50px 0px 0px 220px; z-index: 0;"
+             absolute06.style = " width:150px; margin: 25px 0px 0px 255px; z-index: 1;"
+             flag02.innerText = "2";
+    })
+    
+    
+    
+          	
 
 })();
-(() => {
-  //HTMLのid値を使って以下のDOM要素を取得
-  var downbutton = document.getElementById('down02');
-  var upbutton = document.getElementById('up02');
-  var nameText = document.getElementById("nameText02");
-  var element = document.getElementById( "battle02" ) ;
 
 
-  //ボタンが押されたらカウント減
-  downbutton.addEventListener('click', (event) => {
-  //0以下にはならないようにする
-  if(nameText.value >= 1) {
-    nameText.value--;
-    element.value = nameText.value ;
+//管理者用じゃんけんが両方チェックされたときじゃんけんボタンがオンになる
+    
+  function check_form() {
+    const battle01 = document.getElementsByName('image');
+    const battle02 = document.getElementsByName('image2');
+    const button = document.getElementById('janken_botton');
+    var check01 = false;
+    var check02 = false;
+    for(var i=0; i<battle01.length; i++) {
+      if(battle01[i].checked) {
+         check01 = true;
+      }
+    }
+    for(var i=0; i<battle02.length; i++) {
+      if(battle02[i].checked) {
+         check02 = true;
+      }
+    }
+   if(check01 == true && check02 == true){
+       button.disabled = false;
+   }
 
   }
-  });
 
-  //ボタンが押されたらカウント増
-  upbutton.addEventListener('click', (event) => {
-    nameText.value++;
-    element.value = nameText.value ;
+function setBattle(){
+    const battle01 = document.getElementsByName('image');
+    const battle02 = document.getElementsByName('image2');
+    const name01 = document.getElementById('name01').value;
+    const name02 = document.getElementById('name02').value;
 
-  })
+    const button = document.getElementById('janken_botton');
+    const result = document.getElementById('result');
+    var nameText01 = document.getElementById("nameText01");
+    var element01 = document.getElementById( "battle01" ) ;
+    var nameText02 = document.getElementById("nameText02");
+    var element02 = document.getElementById( "battle02" ) ;
+    var Result_end
+    
+    //スペシャル（得意）のフラグ
+    let flag01 = document.getElementById("flag01").textContent;
+    let flag02 = document.getElementById("flag02").textContent;
+
+            if ((battle01[0].checked && battle02[0].checked) ||(battle01[1].checked && battle02[1].checked) ||(battle01[2].checked && battle02[2].checked)  ) {
+                Result_end = "あいこです";
+            } else if((battle01[0].checked && battle02[1].checked) ||(battle01[1].checked && battle02[2].checked)||(battle01[2].checked && battle02[0].checked)) {
+               
+               if((flag01 == "0" && battle01[0].checked)|| (flag01 == 1 && battle01[1].checked)|| (flag01 == 2 && battle01[2].checked)){
+                 if(nameText02.value >= 2) {
+                   nameText02.value= nameText02.value - 2;
+                   element02.value = nameText02.value;
+                 } else if (nameText02.value = 1) {
+                  nameText02.value--;
+                  element02.value = nameText02.value ;
+                 }
+                Result_end = name01 + "の必殺技！";                                 
+               } else if(nameText02.value >= 1) {
+                 nameText02.value--;
+                 element02.value = nameText02.value ;
+                Result_end = name01 + "の攻撃！";
+               }
+               if(nameText02.value == 0){
+                   Result_end = name01 + "の勝利！";
+               }
+               
+            }else {
+            
+               if((flag02 == "0" && battle02[0].checked)|| (flag02 == 1 && battle02[1].checked)|| (flag02 == 2 && battle02[2].checked)){
+                 if(nameText01.value >= 2) {
+                   nameText01.value= nameText01.value - 2;
+                   element01.value = nameText01.value;
+                 } else if (nameText01.value = 1) {
+                  nameText01.value--;
+                  element01.value = nameText01.value ;
+                 }
+                 Result_end = name02 + "の必殺技！";  
+                 }else if(nameText01.value >= 1) {
+                 nameText01.value--;
+                 element01.value = nameText01.value ;
+                Result_end = name02 + "の攻撃！";
+
+               }
+               if(nameText01.value == 0){
+                   Result_end = name02 + "の勝利！";
+               }
+
+            }
+
+result.innerText = Result_end;
 
 
-})();
+
+}
+
+
+
+function resetBattle(){
+    const battle01 = document.getElementsByName('image');
+    const battle02 = document.getElementsByName('image2');
+
+    const button = document.getElementById('janken_botton');
+    const result = document.getElementById('result');
+    var nameText01 = document.getElementById("nameText01");
+    var element01 = document.getElementById( "battle01" ) ;
+    var nameText02 = document.getElementById("nameText02");
+    var element02 = document.getElementById( "battle02" ) ;
+
+    let absolute01 = document.getElementById("absolute01");
+    let absolute02 = document.getElementById("absolute02");
+    let absolute03 = document.getElementById("absolute03");
+    let absolute04 = document.getElementById("absolute04");
+    let absolute05 = document.getElementById("absolute05");
+    let absolute06 = document.getElementById("absolute06");
+
+    for(var i=0; i<battle01.length; i++) {
+      battle01[i].checked  = false;
+      battle02[i].checked  = false; 
+    }
+    button.disabled = true;
+result.innerText = "";
+                 nameText01.value = 5;
+                 element01.value = nameText01.value ;
+                 nameText02.value = 5;
+                 element02.value = nameText02.value ;
+//スペシャル（得意）リセット
+             absolute01.style = " width:100px; margin: 0 0 0 50px; z-index: 0; ";
+             absolute02.style = " width:100px; margin: 50px 0 0 20px; z-index: 0;"
+             absolute03.style = " width:100px; margin: 50px 0 0 80px; z-index: 0;"
+             absolute04.style = " width:100px; margin: 0 0 0 250px; z-index: 0; ";
+             absolute05.style = " width:100px; margin: 50px 0 0 220px; z-index: 0;"
+             absolute06.style = " width:100px; margin: 50px 0 0 280px; z-index: 0;"
+ 
+
+
+}
+
+
+
+
+
+
 
 
 </script>
