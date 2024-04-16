@@ -57,8 +57,11 @@
 </div>
 <div class="janken">
 <input type="button" id="janken_botton" value="じゃんけん" onclick="setBattle()"  disabled />
+<input type="button" id="janken_next" value="次のバトルへ" onclick="nextBattle()"  />
 <input type="button" id="janken_reset" value="リセット" onclick="resetBattle()"  />
+
 </div>
+
 
 
 <style type="text/css">
@@ -211,7 +214,7 @@ display:flex;
     width:180px;
 }
 .janken{
-      margin-left:110px;
+      margin-left:60px;
 }
 #result{
     position: absolute;
@@ -231,6 +234,8 @@ margin-left: 45px;
     display:none;
 
 }
+
+
 
 </style>
 <script>
@@ -363,7 +368,46 @@ function setBattle(){
     //スペシャル（得意）のフラグ
     let flag01 = document.getElementById("flag01").textContent;
     let flag02 = document.getElementById("flag02").textContent;
+    let absolute01 = document.getElementById("absolute01");
+    let absolute02 = document.getElementById("absolute02");
+    let absolute03 = document.getElementById("absolute03");
+    let absolute04 = document.getElementById("absolute04");
+    let absolute05 = document.getElementById("absolute05");
+    let absolute06 = document.getElementById("absolute06");
 
+
+//じゃんけんの手だけ表示
+if(battle01[0].checked){
+    absolute01.style.opacity = 1;
+    absolute02.style.opacity = 0.1;
+    absolute03.style.opacity = 0.1;
+}else if(battle01[1].checked){
+    absolute01.style.opacity = 0.1;
+    absolute02.style.opacity = 1;
+    absolute03.style.opacity = 0.1;
+}else if(battle01[2].checked){
+    absolute01.style.opacity = 0.1;
+    absolute02.style.opacity = 0.1;
+    absolute03.style.opacity = 1;
+}
+if(battle02[0].checked){
+    absolute04.style.opacity = 1;
+    absolute05.style.opacity = 0.1;
+    absolute06.style.opacity = 0.1;
+}else if(battle02[1].checked){
+    absolute04.style.opacity = 0.1;
+    absolute05.style.opacity = 1;
+    absolute06.style.opacity = 0.1;
+}else if(battle02[2].checked){
+    absolute04.style.opacity = 0.1;
+    absolute05.style.opacity = 0.1;
+    absolute06.style.opacity = 1;
+}
+
+
+
+
+//じゃんけんシステム
             if ((battle01[0].checked && battle02[0].checked) ||(battle01[1].checked && battle02[1].checked) ||(battle01[2].checked && battle02[2].checked)  ) {
                 Result_end = "あいこです";
             } else if((battle01[0].checked && battle02[1].checked) ||(battle01[1].checked && battle02[2].checked)||(battle01[2].checked && battle02[0].checked)) {
@@ -415,6 +459,37 @@ result.innerText = Result_end;
 
 }
 
+function nextBattle(){
+    let absolute01 = document.getElementById("absolute01");
+    let absolute02 = document.getElementById("absolute02");
+    let absolute03 = document.getElementById("absolute03");
+    let absolute04 = document.getElementById("absolute04");
+    let absolute05 = document.getElementById("absolute05");
+    let absolute06 = document.getElementById("absolute06");
+    let image_a = document.getElementById("image_a");
+    let image_b = document.getElementById("image_b");
+    let image_c = document.getElementById("image_c");
+    let image_d = document.getElementById("image_d");
+    let image_e = document.getElementById("image_e");
+    let image_f = document.getElementById("image_f");
+    const button = document.getElementById('janken_botton');
+    
+    absolute01.style.opacity = 1;
+    absolute02.style.opacity = 1;
+    absolute03.style.opacity = 1;
+    absolute04.style.opacity = 1;
+    absolute05.style.opacity = 1;
+    absolute06.style.opacity = 1;
+    image_a.checked = false;
+    image_b.checked = false;
+    image_c.checked = false;
+    image_d.checked = false;
+    image_e.checked = false;
+    image_f.checked = false;
+    
+    button.disabled = true;
+
+}
 
 
 function resetBattle(){
@@ -454,9 +529,7 @@ result.innerText = "";
              absolute06.style = " width:100px; margin: 50px 0 0 280px; z-index: 0;"
  
 
-
 }
-
 
 
 
