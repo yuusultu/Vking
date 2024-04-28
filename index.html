@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<div id="result"></div>
 <div style="display: flex;">
-
 <div id="Aria01"><input type="text" id="name01" value="おかつゆうす"></input><meter id="battle01" min="0" max="5" low="2" high="3" value="5" optimum="5"></meter><br> <input type="text" id="nameText01" maxlength="1" value="5"  onkeyup="inputCheck01()"></div><div id="flag01"></div>
 <div id="Aria02"><input type="text" id="name02" value="対戦相手"></input> <meter id="battle02" min="0" max="5" low="2" high="3" value="5" optimum="5"></meter><br> <input type="text" id="nameText02" maxlength="1" value="5"  onkeyup="inputCheck02()"> </div><div id="flag02"></div>
 </div>
-<div id="result"></div>
 
 <div class="relative">
   <img src="グー.png" alt="" id="absolute01" width="100" />
@@ -65,6 +64,9 @@
 
 
 <style type="text/css">
+body{
+font-family:'メイリオ', 'Meiryo', sans-serif;
+}
 #Aria01 {
      width: 200px;
      background-color: hotpink;
@@ -217,9 +219,9 @@ display:flex;
       margin-left:60px;
 }
 #result{
-    position: absolute;
     text-align: center;
     width: 400px;
+    height:20px;
 }
 #left{
 margin-left: 23px;
